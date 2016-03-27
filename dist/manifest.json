@@ -1,0 +1,31 @@
+{
+    "manifest_version": 2,
+    "name": "Extract Headings",
+    "description": "article内のh1~h6を抽出しアウトラインを作成",
+    "version": "0.0.1",
+    "background": {
+        "scripts": [
+            "js/background.js"
+        ],
+        "persistent": false
+    },
+    "browser_action": {
+        "default_popup": "popup.html"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "http://*/*",
+                "https://*/*"
+            ],
+            "js": ["js/common.js"],
+            "run_at": "document_end"
+        }
+    ],
+    "permissions": [
+        "tabs",
+        "https://*/*",
+        "http://*/*",
+        "storage"
+    ]
+}
