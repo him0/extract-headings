@@ -8,22 +8,32 @@
       // keyは eh-${tabId} とする
       let data = {};
 
-      Array.from(document.querySelectorAll('article')).forEach(article => {
-        Array.from(article.querySelectorAll('h1,h2,h3,h4,h5,h6')).forEach(heading => {
+      let articles = document.querySelectorAll('article');
+
+      let setHeadings = baseElement => {
+        Array.from(baseElement.querySelectorAll('h1,h2,h3,h4,h5,h6')).forEach(heading => {
           heading.insertAdjacentHTML('afterbegin', `<span id="eh-${headingCounter}"></span>`);
 
-          tagName = heading.tagName.toLowerCase();
-
+          let tagName = heading.tagName.toLowerCase();
           headings.push(`<${tagName} class="heading" id="eh-${headingCounter}">${heading.innerText}</${tagName}>`);
 
           headingCounter++;
         });
-      });
-      data[`eh-${currentTabId}`] = headings;
+      };
 
+      // ページ中にarticleタグが含まれていない場合はdocumentから
+      // headingタグを抽出
+      if (articles.length === 0) {
+        setHeadings(document);
+      } else {
+        Array.from(articles).forEach(article => {
+          setHeadings(article); 
+        });
+      }
+      
+      // ストレージに保存
+      data[`eh-${currentTabId}`] = headings;
       chrome.storage.local.set(data);
-      chrome.storage.local.get((data) => {
-      });
     }
 
     if (message.type === 'onClicked') {

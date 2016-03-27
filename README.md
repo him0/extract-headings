@@ -1,10 +1,8 @@
 # Extract Headings
 
-articleタグ内のh1~h6タグを抽出してアウトラインを作成するChromeの拡張機能
+Webページ内のh1~h6タグを抽出してアウトラインを作成するChromeの拡張機能
 
 ## お願い
-Webページ中にarticleタグが使用されていない場合は機能しません。セマンティックなコードを書いてくれ頼む(自戒)
-
 動かない、パフォーマンスの問題、こんなクソコードを書くな等の改善点がございましたら、IssueやPull Requestを投げたり、Twitterアカウント[@himmel_mrcry](https://twitter.com/himmel_mrcry)の方までお声掛け下さい。
 
 ## 導入方法
