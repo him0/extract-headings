@@ -2,8 +2,8 @@
   let currentTabId;
   let currentTabName;
 
-  // 現在のタブIDをセット
-  let setCurrentTabId = () => {
+  // 現在のタブ情報をセット
+  let setCurrentTabInfo = () => {
     return new Promise(resolve => {
       chrome.tabs.query({active: true, currentWindow: true}, tabs => {
         currentTabId = tabs[0].id;
@@ -26,8 +26,8 @@
   };
 
   let main = () => {
-    setCurrentTabId()
-    .then(renderingData());
+    setCurrentTabInfo()
+    .then(renderingData);
   };
 
   main();
