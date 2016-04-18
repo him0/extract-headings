@@ -17,9 +17,12 @@
   let renderingData = () => {
     return new Promise(resolve => {
       chrome.storage.local.get(currentTabName, data => {
-        data[currentTabName].forEach(heading => {
-          document.getElementById('headings').insertAdjacentHTML('beforeend', heading);
-        });
+        if (data[currentTabName].length > 0) {
+          document.getElementById('headings').children[0].remove();
+          data[currentTabName].forEach(heading => {
+            document.getElementById('headings').insertAdjacentHTML('beforeend', heading);
+          });
+        }
         return resolve();
       });
     });
